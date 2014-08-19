@@ -1,0 +1,1 @@
+#ifndef _warning_#define _warning_#define NO_WARNING	-1#define TICK_SMALL	0#define	TICK_BIG	1void warning_reset();void warning_set(int w, char * ref);int warning_found();static void warning_display();#endif

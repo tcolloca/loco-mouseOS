@@ -1,0 +1,58 @@
+cd ./bin
+rm -rf *
+
+nasm -f aout ../src/libasm.asm -o libasm.o
+nasm -f aout ../src/kstart.asm -o kstart.o
+nasm -f aout ../src/loader.asm -o kstart.o
+
+gcc -c ../src/kernel.c -o kernel.o -fno-builtin
+gcc -c ../src/descriptors.c  -o descriptors.o -fno-builtin
+gcc -c ../src/keyboard.c -o keyboard.o -fno-builtin
+gcc -c ../src/buffer.c -o buffer.o -fno-builtin
+gcc -c ../src/stack.c -o stack.o -fno-builtin
+gcc -c ../src/string.c -o string.o -fno-builtin
+gcc -c ../src/parser.c -o parser.o -fno-builtin
+gcc -c ../src/error.c -o error.o -fno-builtin
+gcc -c ../src/commands.c -o commands.o -fno-builtin
+gcc -c ../src/syscall.c -o syscall.o -fno-builtin
+gcc -c ../src/video.c -o video.o -fno-builtin
+gcc -c ../src/mouse.c -o mouse.o -fno-builtin
+gcc -c ../src/io.c -o io.o -fno-builtin
+gcc -c ../src/terminal.c -o terminal.o -fno-builtin
+gcc -c ../src/shell.c -o shell.o -fno-builtin
+gcc -c ../src/stdio.c -o stdio.o -fno-builtin
+gcc -c ../src/stdlib.c -o stdlib.o -fno-builtin
+gcc -c ../src/rtc.c -o rtc.o -fno-builtin
+gcc -c ../src/math.c -o math.o -fno-builtin
+gcc -c ../src/time.c -o time.o -fno-builtin
+gcc -c ../src/savescreen.c -o savescreen.o -fno-builtin
+gcc -c ../src/mouse_event.c -o mouse_event.o -fno-builtin
+gcc -c ../src/mouse_listener.c -o mouse_listener.o -fno-builtin
+gcc -c ../src/visual.c -o visual.o -fno-builtin
+gcc -c ../src/lomog.c -o lomog.o -fno-builtin
+gcc -c ../src/panel.c -o panel.o -fno-builtin
+gcc -c ../src/button.c -o button.o -fno-builtin
+gcc -c ../src/timertick_event.c -o timertick_event.o -fno-builtin
+gcc -c ../src/timertick_listener.c -o timertick_listener.o -fno-builtin
+gcc -c ../src/pc_speaker.c -o pc_speaker.o -fno-builtin
+gcc -c ../src/beep.c -o beep.o -fno-builtin
+gcc -c ../src/timertick.c -o timertick.o -fno-builtin
+gcc -c ../src/tick.c -o tick.o -fno-builtin
+gcc -c ../src/warning.c -o warning.o -fno-builtin
+gcc -c ../src/keyboard_event.c -o keyboard_event.o -fno-builtin
+gcc -c ../src/keyboard_listener.c -o keyboard_listener.o -fno-builtin
+
+gcc -c ../src/software/help.c -o help.o -fno-builtin
+gcc -c ../src/software/man.c -o man.o -fno-builtin
+gcc -c ../src/software/t_color.c -o t_color.o -fno-builtin
+gcc -c ../src/software/b_color.c -o b_color.o -fno-builtin
+gcc -c ../src/software/clear.c -o clear.o -fno-builtin
+gcc -c ../src/software/gettime.c -o gettime.o -fno-builtin -fno-stack-protector
+gcc -c ../src/software/settime.c -o settime.o -fno-builtin -fno-stack-protector
+gcc -c ../src/software/svscr.c -o svscr.o -fno-builtin -fno-stack-protector
+gcc -c ../src/software/date.c -o date.o -fno-builtin -fno-stack-protector
+gcc -c ../src/software/menu.c -o menu.o -fno-builtin -fno-stack-protector
+gcc -c ../src/software/dharma.c -o dharma.o -fno-builtin -fno-stack-protector
+gcc -c ../src/software/fortune.c -o fortune.o -fno-builtin -fno-stack-protector
+
+ld -T ../src/link.ld -o kernel.bin kernel.o kstart.o descriptors.o libasm.o keyboard.o buffer.o stack.o string.o parser.o error.o commands.o syscall.o video.o mouse.o io.o terminal.o shell.o stdio.o stdlib.o rtc.o help.o man.o t_color.o b_color.o clear.o math.o time.o gettime.o settime.o savescreen.o svscr.o date.o mouse_event.o mouse_listener.o visual.o lomog.o panel.o button.o menu.o timertick_event.o timertick_listener.o dharma.o fortune.o timertick.o pc_speaker.o beep.o tick.o warning.o keyboard_event.o keyboard_listener.o

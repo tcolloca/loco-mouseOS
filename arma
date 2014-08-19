@@ -1,0 +1,8 @@
+./compila
+
+sudo mkdir -p ./img/montado
+sudo mount ./img/tpe.img ./img/montado
+sudo rm -f ./img/montado/boot/kernel.bin
+sudo cp ./bin/kernel.bin ./img/montado/boot
+sudo umount ./img/tpe.img
+echo "done!"
